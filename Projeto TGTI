@@ -1,0 +1,47 @@
+import mysql.connector
+
+conexao = mysql.connector.connect(
+    host='localhost',
+    user='root',
+    password='Mapfre$#@!4321',
+    database='projeto_desenvolvimento',
+)
+
+cursor = conexao.cursor()
+
+#CREATE
+
+id_equipe = 1
+nome = "Larissa Moura"
+cargo = "Gerente"
+email = "LM@.gmail.com"
+telefone = 987456231
+comando = f'INSERT INTO equipe_supervisao (id_equipe, nome, cargo, email, telefone) VALUES ({id_equipe}, "{nome}", "{cargo}", "{email}", {telefone})'
+cursor.execute(comando)
+conexao.commit()
+
+#READ
+
+comando = f'select * from equipe_supervisao'
+cursor.execute(comando)
+resultado = cursor.fetchall()
+print(resultado)
+
+#UPDATE
+
+id_equipe = 1
+nome = Carla Dantas
+comando = f'UPDATE equipe_supervisao SET nome = "{nome}" WHERE id_equipe = {id_equipe}'
+cursor.execute(comando)
+conexao.commit()
+
+#DELETE
+
+id_equipe = 1
+comando = f'DELETE FROM equipe_supervisao WHERE id_equipe = {id_equipe}'
+cursor.execute(comando)
+conexao.commit()
+
+
+cursor.close()
+conexao.close()
